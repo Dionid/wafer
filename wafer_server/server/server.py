@@ -88,7 +88,7 @@ def complaint(node, contract_address, from_address, private_key, identificator):
         from_address=from_address,
         private_key=private_key,
         value=0,
-        gas=150000,
+        gas=1500000,
         data=form_data('complaint(uint256)', identificator)
     )
 
@@ -104,7 +104,7 @@ def make_dely_payment(node, contract_address, from_address, private_key, identif
         from_address=from_address,
         private_key=private_key,
         value=0,
-        gas=150000,
+        gas=1500000,
         data=form_data('makeDelayedPayment(uint256)', identificator)
     )
 
@@ -119,7 +119,7 @@ def new_session(node, contract_address, from_address, private_key, deposit, iden
         from_address=from_address,
         private_key=private_key,
         value=deposit,
-        gas=150000,
+        gas=1500000,
         data=form_data('newSession(uint256)', identificator)
     )
 
@@ -138,6 +138,7 @@ class Contract(object):
         self.traffic = traffic
         self.last_connect_time = time.time()
         self.closing_time = -1
+        self.closed = False
 
     def initialize_closing(self):
         if self.closing_time != -1:
@@ -164,7 +165,7 @@ class Router(object):
             if tx_hash is None:
                 print("something goes wrong when creating router ;(")
             else:
-                print("1")
+
                 #self.address = web3.eth.getTransactionReceipt(tx_hash).logs[0].args.contractAddress
                 self.address = get_address(tx_hash)
                 with open(self.address_filename, "w") as text_file:
@@ -190,7 +191,15 @@ class Router(object):
         return self.address
 
     def check_mac_table(self, mac):
-        return mac in self.mac_address_white_list
+        res =  mac in self.mac_address_white_list
+        if res:
+            return True
+
+        for contract in self.contracts:
+            if contract.client_mac == mac and contract.address is not None:
+                self.mac_address_white_list.append(mac)
+                print('Add mac {}'.format(mac))
+                return True
 
     def send_contract_for_sign(self, contract):
         contract.isSigned = True
@@ -219,10 +228,6 @@ class Router(object):
             if contract.client_mac == mac:
                 if contract.address is None:
                     return True
-                else:
-                    self.mac_address_white_list.append(mac)
-                    print('error, mac was not added before {}'.format(mac))
-                    return False
         return False
 
     def check_contracts_timeout(self):
@@ -252,6 +257,8 @@ class Router(object):
     def get_contract(self, mac):
         res_contract = None
         for contract in self.contracts:
+            if contract.closed:
+                continue
             if contract.client_mac == mac:
                 res_contract = contract
                 break
@@ -263,13 +270,16 @@ class Router(object):
         if contract.traffic <= contract.used_traffic:
             contract.used_traffic = contract.traffic
             self.close_contract(contract)
-            self.contracts.remove(contract)
+            contract.closed = True
+            if contract.client_mac in self.mac_address_white_list:
+                self.mac_address_white_list.remove(contract.client_mac)
+            #self.contracts.remove(contract)
             return "Traffic is over", 500
             #return self.create_session(contract.client_mac)
         return "OK", 200
 
     def pay_contract(self, contract):
-        msg = make_dely_payment(self.address, self.wallet, self.private_key, contract.id, contract.used_traffic)
+        msg = make_dely_payment(self.address, self.wallet, self.private_key, contract.id)
 
         if not msg['success']:
             print("I can't close session", contract.id)
@@ -282,7 +292,7 @@ class Router(object):
         msg = close_session(self.address, self.wallet, self.private_key, contract.id, contract.used_traffic)
 
         if not msg['success']:
-            print("I can't close session", contract.id)
+            #print("I can't close session", contract.id)
             return False
 
         self.mac_address_white_list.remove(contract.client_mac)
@@ -352,9 +362,11 @@ def request_auth():
     print("Mac address is {}".format(mac_str))
 
     if router.check_mac_table(mac):
+        print("Mac already alowed")
         return "Mac already alowed", 200
 
     if router.check_contract_proceed(mac): #contract wait to be prooved
+        print("Wait to proceed")
         return "Wait to proceed", 201
 
     return router.create_session(mac)
@@ -377,9 +389,11 @@ def use_traffic():
 
     contract = router.get_contract(mac)
     if contract is None:
-        return "Contract not found in request", 500
+        return "Contract not found", 500
     if contract.address is None:
         return "Contract not prooved yet", 500
+    if contract.closed:
+        return "Contract closed", 500
 
     return router.use_traffic(contract, traffic_amount)
 
