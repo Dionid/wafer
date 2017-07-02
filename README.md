@@ -26,8 +26,6 @@ user- router interaction will occur directly and the contract cost will be less 
 
 ---
 ### The biggest obstacle ###
-На хакатон наша команда пришла только с теоретическими знаниями по блокчейну. В рамках хакатона мы впервый раз попробовали
-разработку смартконтрактов на базе ethereum. Смартконтракт был написан быстро, основной проблемой было взаимодействие сервера с
-блокчейном и клиента с блокчейном.
+At the begining of hackathon we now just a little bit about blockchain. In our team there are 3 participants who learn Maching Learning and Data Analysis at university, in the 3rd course and and the last one is 1C engineer. So it was a challenge for us, because we developp for blockchain in the first time. We have some problems with undertanding how to write smart contract and also it was a little challenge for us to write a good client-server application. But despite of all this things it was really awsome hackathon and we beat ours goal to learn more about blockchain and smart-contracts.
 
 ---

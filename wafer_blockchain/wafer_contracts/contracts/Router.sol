@@ -13,7 +13,9 @@ contract Router {
     from contract to router and contributor in proportions, given by router. This process
     will public propotions, and after some delay router will be able to call
     makeDelayedPayment to complete payment. If contributor do not agree with propotions,
-    he can call complaint on particular session. This will leave money
+    he can call complaint on particular session. This will send customers part of money,
+    but leave router's part on contract. Also this option can be used before
+    initialasin session closing, in this case nobody will resive money.
 
     */
 
