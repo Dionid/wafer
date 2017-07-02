@@ -1,0 +1,401 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		66F0966843816AEF10781322 /* Pods_WaferApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7D756120982142DE34620A /* Pods_WaferApp.framework */; };
+		7A0AE0B81F0886E100DC7287 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0AE0B71F0886E100DC7287 /* AppDelegate.swift */; };
+		7A0AE0BA1F0886E100DC7287 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0AE0B91F0886E100DC7287 /* ViewController.swift */; };
+		7A0AE0BD1F0886E100DC7287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0AE0BB1F0886E100DC7287 /* Main.storyboard */; };
+		7A0AE0BF1F0886E100DC7287 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A0AE0BE1F0886E100DC7287 /* Assets.xcassets */; };
+		7A0AE0C21F0886E100DC7287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0AE0C01F0886E100DC7287 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6881F0D00619104A04E5DA8A /* Pods-WaferApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaferApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WaferApp/Pods-WaferApp.debug.xcconfig"; sourceTree = "<group>"; };
+		7A0AE0B41F0886E100DC7287 /* WaferApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaferApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0AE0B71F0886E100DC7287 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7A0AE0B91F0886E100DC7287 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7A0AE0BC1F0886E100DC7287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7A0AE0BE1F0886E100DC7287 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A0AE0C11F0886E100DC7287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7A0AE0C31F0886E100DC7287 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A0AE0C91F08886200DC7287 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		7E7D756120982142DE34620A /* Pods_WaferApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WaferApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90696364CEE52F914048CF8A /* Pods-WaferApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WaferApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-WaferApp/Pods-WaferApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7A0AE0B11F0886E100DC7287 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F0966843816AEF10781322 /* Pods_WaferApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A0AE0AB1F0886E100DC7287 = {
+			isa = PBXGroup;
+			children = (
+				7A0AE0C91F08886200DC7287 /* Podfile */,
+				7A0AE0B61F0886E100DC7287 /* WaferApp */,
+				7A0AE0B51F0886E100DC7287 /* Products */,
+				DEAEF71A71AFCEF81ED24DB0 /* Pods */,
+				88F713A95CDF76951952B700 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7A0AE0B51F0886E100DC7287 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A0AE0B41F0886E100DC7287 /* WaferApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A0AE0B61F0886E100DC7287 /* WaferApp */ = {
+			isa = PBXGroup;
+			children = (
+				7A0AE0B71F0886E100DC7287 /* AppDelegate.swift */,
+				7A0AE0B91F0886E100DC7287 /* ViewController.swift */,
+				7A0AE0BB1F0886E100DC7287 /* Main.storyboard */,
+				7A0AE0BE1F0886E100DC7287 /* Assets.xcassets */,
+				7A0AE0C01F0886E100DC7287 /* LaunchScreen.storyboard */,
+				7A0AE0C31F0886E100DC7287 /* Info.plist */,
+			);
+			path = WaferApp;
+			sourceTree = "<group>";
+		};
+		88F713A95CDF76951952B700 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E7D756120982142DE34620A /* Pods_WaferApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEAEF71A71AFCEF81ED24DB0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6881F0D00619104A04E5DA8A /* Pods-WaferApp.debug.xcconfig */,
+				90696364CEE52F914048CF8A /* Pods-WaferApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7A0AE0B31F0886E100DC7287 /* WaferApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A0AE0C61F0886E100DC7287 /* Build configuration list for PBXNativeTarget "WaferApp" */;
+			buildPhases = (
+				06A6D5C6BD8AEB12D8D8D2FE /* [CP] Check Pods Manifest.lock */,
+				7A0AE0B01F0886E100DC7287 /* Sources */,
+				7A0AE0B11F0886E100DC7287 /* Frameworks */,
+				7A0AE0B21F0886E100DC7287 /* Resources */,
+				F6F226F7CF2CB8A76946D09C /* [CP] Embed Pods Frameworks */,
+				83DD32F1C045BE741F806628 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WaferApp;
+			productName = WaferApp;
+			productReference = 7A0AE0B41F0886E100DC7287 /* WaferApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7A0AE0AC1F0886E100DC7287 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = wafer;
+				TargetAttributes = {
+					7A0AE0B31F0886E100DC7287 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+				};
+			};
+			buildConfigurationList = 7A0AE0AF1F0886E100DC7287 /* Build configuration list for PBXProject "WaferApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7A0AE0AB1F0886E100DC7287;
+			productRefGroup = 7A0AE0B51F0886E100DC7287 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7A0AE0B31F0886E100DC7287 /* WaferApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7A0AE0B21F0886E100DC7287 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A0AE0C21F0886E100DC7287 /* LaunchScreen.storyboard in Resources */,
+				7A0AE0BF1F0886E100DC7287 /* Assets.xcassets in Resources */,
+				7A0AE0BD1F0886E100DC7287 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06A6D5C6BD8AEB12D8D8D2FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83DD32F1C045BE741F806628 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WaferApp/Pods-WaferApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6F226F7CF2CB8A76946D09C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WaferApp/Pods-WaferApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A0AE0B01F0886E100DC7287 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A0AE0BA1F0886E100DC7287 /* ViewController.swift in Sources */,
+				7A0AE0B81F0886E100DC7287 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7A0AE0BB1F0886E100DC7287 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A0AE0BC1F0886E100DC7287 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7A0AE0C01F0886E100DC7287 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A0AE0C11F0886E100DC7287 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7A0AE0C41F0886E100DC7287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7A0AE0C51F0886E100DC7287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A0AE0C71F0886E100DC7287 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6881F0D00619104A04E5DA8A /* Pods-WaferApp.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SUYHE47T93;
+				INFOPLIST_FILE = WaferApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wafer.WaferApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A0AE0C81F0886E100DC7287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90696364CEE52F914048CF8A /* Pods-WaferApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SUYHE47T93;
+				INFOPLIST_FILE = WaferApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wafer.WaferApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7A0AE0AF1F0886E100DC7287 /* Build configuration list for PBXProject "WaferApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0AE0C41F0886E100DC7287 /* Debug */,
+				7A0AE0C51F0886E100DC7287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A0AE0C61F0886E100DC7287 /* Build configuration list for PBXNativeTarget "WaferApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0AE0C71F0886E100DC7287 /* Debug */,
+				7A0AE0C81F0886E100DC7287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7A0AE0AC1F0886E100DC7287 /* Project object */;
+}

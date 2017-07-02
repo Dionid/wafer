@@ -1,0 +1,15 @@
+{
+  "name": "wafer-contracts",
+  "version": "0.0.3",
+  "description": "wafer contracts",
+  "main": "index.js",
+  "repository": "http://playertwo@github.com/playertwo/wafer-contracts.git",
+  "author": "wafer team",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "ethereumjs-testrpc": "3.0.5",
+    "truffle": "3.2.2",
+    "truffle-default-builder": "^2.0.0"
+  }
+}

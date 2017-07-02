@@ -1,3 +1,4 @@
-[submodule "wafer-contracts"]
-	path = wafer-contracts
-	url = git@github.com:playertwo/wafer-contracts.git
+[submodule "wafer_contracts"]
+	path = wafer_contracts
+	url = https://github.com/playertwo/wafer_contracts.git
+	ignore = dirty
