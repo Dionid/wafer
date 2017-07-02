@@ -22,12 +22,29 @@ def acquires_node(f):
         return f(node, *args, **kwargs)
     return decorator
 
+def error_response(message='Something went wrong. Transaction wasn\'t sent'):
+
+        return {
+            'success': False,
+            'tx_hash': None,
+            'message': message
+        }
+
+
+def success_response(tx_hash=None):
+
+        return {
+            'success': True,
+            'tx_hash': tx_hash,
+            'message': None
+        }
+
 
 @acquires_node
 def create_new_router(node, from_address, private_key, credit):
 
     tx_hash = node.sendRawTransaction(
-        to_address=app.config['FACTORY_ADDRESS'],
+        to_address='0x454dc306bf74ba864bef554118618b1ceedd1824',
         from_address=from_address,
         private_key=private_key,
         value=0,
@@ -55,20 +72,6 @@ def close_session(node, contract_address, from_address, private_key, identificat
     return success_response(tx_hash)
 
 
-def error_response(message='Something went wrong. Transaction wasn\'t sent'):
-    return jsonify({
-        'success': False,
-        'tx_hash': None,
-        'message': message
-    })
-
-
-def success_response(tx_hash=None):
-    return jsonify({
-        'success': True,
-        'tx_hash': tx_hash,
-        'message': None
-    })
 
 
 
@@ -106,9 +109,9 @@ class Router(object):
                 print("something goes wrong when creating router ;(")
             else:
                 self.address = web3.eth.getTransactionReceipt(tx_hash).logs[0].args.contractAddress
-            with open(self.address_filename, "w") as text_file:
-                text_file.write(self.address)
-                print("register router adress {}".format(self.address))
+            #with open(self.address_filename, "w") as text_file:
+                #text_file.write(self.address)
+                #print("register router adress {}".format(self.address))
 
         self.max_id = 0
         self.contracts = []
