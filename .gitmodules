@@ -1,0 +1,3 @@
+[submodule "wafer-contracts"]
+	path = wafer-contracts
+	url = git@github.com:playertwo/wafer-contracts.git
