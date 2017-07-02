@@ -9,12 +9,14 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIAlertViewDelegate {
     
     var getAccessButton: UIButton!
     var useTrafficButton: UIButton!
     var statusLabel: UILabel!
     var serverIP = "http://34.208.247.57:8484"
+    var account = "0xd646e8c228bfcc0ec6067ad909a34f14f45513b0"
+    var key = "83c14ddb845e629975e138a5c28ad5a72a49252ea65b3d3ec99810c82751cc3a"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,26 @@ class ViewController: UIViewController {
             
         } else if response.response!.statusCode == 201 {
             self.changeLabel("Please, wait", UIColor.orange)
+        } else if response.response!.statusCode == 202 {
+            let alertView = UIAlertView(title: "Accept contract", message: "Are you agree to pay 100 wei for 100 mb?", delegate: self, cancelButtonTitle: "Decline", otherButtonTitles: "Accept")
+            
+            let alertController = UIAlertController(title: "Accept contract", message: "Are you agree to pay 100 wei for 100 mb?", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+                  self.changeLabel("Try to get access", UIColor.black)
+            }
+            alertController.addAction(cancelAction)
+            
+            let OKAction = UIAlertAction(title: "Accept", style: .default) { action in
+                self.changeLabel("Please, wait", UIColor.orange)
+            }
+            alertController.addAction(OKAction)
+            
+            self.present(alertController, animated: true) {
+                
+            }
+            
+            
         } else {
             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                 self.changeLabel(utf8Text, UIColor.red)

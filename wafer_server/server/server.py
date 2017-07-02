@@ -42,7 +42,7 @@ def success_response(tx_hash=None):
 
 @acquires_node
 def create_new_router(node, from_address, private_key, credit):
-
+    print('creating new Router contract with credit', credit,' on address', from_address)
     tx_hash = node.sendRawTransaction(
         to_address='0x454dc306bf74ba864bef554118618b1ceedd1824',
         from_address=from_address,
@@ -58,7 +58,7 @@ def create_new_router(node, from_address, private_key, credit):
 
 @acquires_node
 def close_session(node, contract_address, from_address, private_key, identificator, money_for_router):
-
+    print('closing session with id', identificator, 'with part', money_for_router)
     tx_hash = node.sendRawTransaction(
         to_address=contract_address,
         from_address=from_address,
@@ -80,6 +80,51 @@ def get_address(node, tx_hash):
         return "0x{}".format(log["data"][90:130])
 
 
+@acquires_node
+def complaint(node, contract_address, from_address, private_key, identificator):
+    print('reporting router for session', identificator)
+    tx_hash = node.sendRawTransaction(
+        to_address=contract_address,
+        from_address=from_address,
+        private_key=private_key,
+        value=0,
+        gas=150000,
+        data=form_data('complaint(uint256)', identificator)
+    )
+
+    if tx_hash is None: return error_response()
+    return success_response(tx_hash)
+
+
+@acquires_node
+def make_dely_payment(node, contract_address, from_address, private_key, identificator):
+    print('asking payment for session', identificator)
+    tx_hash = node.sendRawTransaction(
+        to_address=contract_address,
+        from_address=from_address,
+        private_key=private_key,
+        value=0,
+        gas=150000,
+        data=form_data('makeDelayedPayment(uint256)', identificator)
+    )
+
+    if tx_hash is None: return error_response()
+    return success_response(tx_hash)
+
+@acquires_node
+def new_session(node, contract_address, from_address, private_key, deposit, identificator):
+    print('creating new session', identificator, 'with castomer', from_address)
+    tx_hash = node.sendRawTransaction(
+        to_address=contract_address,
+        from_address=from_address,
+        private_key=private_key,
+        value=deposit,
+        gas=150000,
+        data=form_data('newSession(uint256)', identificator)
+    )
+
+    if tx_hash is None: return error_response()
+    return success_response(tx_hash)
 
 class Contract(object):
     def __init__(self, router, mac, traffic=100):
@@ -91,12 +136,13 @@ class Contract(object):
         self.client_mac = mac
         self.used_traffic = 0
         self.traffic = traffic
-        self.last_connect_time = -1
+        self.last_connect_time = time.time()
+        self.closing_time = -1
 
     def initialize_closing(self):
-        if self.last_connect_time != -1:
+        if self.closing_time != -1:
             return
-        self.last_connect_time = time.time()
+        self.closing_time = time.time()
 
 class Router(object):
     def __init__(self, private_key, wallet):
@@ -128,7 +174,8 @@ class Router(object):
         self.max_id = 0
         self.contracts = []
         self.mac_address_white_list = []
-        self.timeout = 60*60
+        self.timeout = 60
+        self.timeout_pay = 60
 
 
     def check_contracts_state(self):
@@ -150,8 +197,16 @@ class Router(object):
         return True
 
     def send_signed_contract_to_chain(self, contract):
-        client_private_key = ''
-        client_address = ''
+        client_private_key = '83c14ddb845e629975e138a5c28ad5a72a49252ea65b3d3ec99810c82751cc3a'
+        client_address = '0xd646e8c228bfcc0ec6067ad909a34f14f45513b0'
+        deposit = 100
+        response_json = new_session(self.address, client_address, client_private_key, deposit, contract.id)
+        contract.address = 1
+
+        if not response_json["success"]:
+            print('error while creating session')
+            return False
+        return True
 
     def create_contract(self, mac):
         return Contract(self, mac)
@@ -167,20 +222,31 @@ class Router(object):
                 else:
                     self.mac_address_white_list.append(mac)
                     print('error, mac was not added before {}'.format(mac))
-                    return True
+                    return False
         return False
 
     def check_contracts_timeout(self):
         i = len(self.contracts) - 1
         while i >= 0:
             contract = self.contracts[i]
-            if contract.last_connect_time == -1:
-                continue
             if (time.time() - contract.last_connect_time) > self.timeout:
                 print('contract delete by timeout {}'.format(contract.client_mac))
+                contract.initialize_closing()
+                self.close_contract(contract)
+            i -= 1
 
-                if self.close_contract(contract): #TODO if contract not approved?
-                    self.contracts.remove(contract)
+    def check_contracts_timeout_pay(self):
+        i = len(self.contracts) - 1
+        while i >= 0:
+            contract = self.contracts[i]
+            if contract.closing_time == -1:
+                i -= 1
+                continue
+            if (time.time() - contract.closing_time) > self.timeout_pay:
+                print('contract pay by timeout {}'.format(contract.client_mac))
+
+                self.pay_contract(contract)
+                self.contracts.remove(contract)
             i -= 1
 
     def get_contract(self, mac):
@@ -195,10 +261,22 @@ class Router(object):
     def use_traffic(self, contract, amount):
         contract.used_traffic+=amount
         if contract.traffic <= contract.used_traffic:
+            contract.used_traffic = contract.traffic
             self.close_contract(contract)
             self.contracts.remove(contract)
-            return self.create_session(contract.client_mac)
+            return "Traffic is over", 500
+            #return self.create_session(contract.client_mac)
         return "OK", 200
+
+    def pay_contract(self, contract):
+        msg = make_dely_payment(self.address, self.wallet, self.private_key, contract.id, contract.used_traffic)
+
+        if not msg['success']:
+            print("I can't close session", contract.id)
+            return False
+
+        self.mac_address_white_list.remove(contract.client_mac)
+        return True
 
     def close_contract(self, contract):
         msg = close_session(self.address, self.wallet, self.private_key, contract.id, contract.used_traffic)
@@ -314,4 +392,5 @@ if __name__ == '__main__':
     app.config['router'] = router
     contracts_state_checker = RepeatedTimer(30, router.check_contracts_state)
     contracts_sessions_checker = RepeatedTimer(30, router.check_contracts_timeout)
+    contracts_sessions_checker = RepeatedTimer(30, router.check_contracts_timeout_pay)
     app.run(debug=True, host='0.0.0.0', use_reloader=False)
