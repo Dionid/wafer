@@ -18,7 +18,7 @@ app = Flask(__name__)
 def acquires_node(f):
     @wraps(f)
     def decorator(*args, **kwargs):
-        node = Node(host='34.208.247.57', port='8485')
+        node = Node(host='wafer_blockchain', port='8545')
         return f(node, *args, **kwargs)
     return decorator
 
@@ -48,7 +48,7 @@ def create_new_router(node, from_address, private_key, credit):
         from_address=from_address,
         private_key=private_key,
         value=0,
-        gas=150000,
+        gas=1500000,
         data=form_data('createNewRouter(uint256)', credit)
     )
 
@@ -64,14 +64,20 @@ def close_session(node, contract_address, from_address, private_key, identificat
         from_address=from_address,
         private_key=private_key,
         value=0,
-        gas=150000,
+        gas=1500000,
         data=form_data('closeSession(uint256, uint256)', identificator, money_for_router)
     )
 
     if tx_hash is None: return error_response()
     return success_response(tx_hash)
 
-
+@acquires_node
+def get_address(node, tx_hash):
+    res = node.web3.eth.getTransactionReceipt(tx_hash)
+    for log in res["logs"]:
+        if log["topics"][0]!="0x4928121435207239862d1e5a74480c47d32860d83cc30d7bf4049b737cf71766":
+            continue
+        return "0x{}".format(log["data"][90:130])
 
 
 
@@ -98,20 +104,26 @@ class Router(object):
         self.wallet = wallet
         self.address_filename = ".router_address"
         self.initial_value = 100
+
         if os.path.isfile(self.address_filename):
+
             with open(self.address_filename, "r") as text_file:
                 self.address = text_file.read()
                 print("load router adress {}".format(self.address))
         else:
+
             response_json = create_new_router(self.wallet, self.private_key, self.initial_value)
+
             tx_hash = response_json["tx_hash"]
             if tx_hash is None:
                 print("something goes wrong when creating router ;(")
             else:
-                self.address = web3.eth.getTransactionReceipt(tx_hash).logs[0].args.contractAddress
-            #with open(self.address_filename, "w") as text_file:
-                #text_file.write(self.address)
-                #print("register router adress {}".format(self.address))
+                print("1")
+                #self.address = web3.eth.getTransactionReceipt(tx_hash).logs[0].args.contractAddress
+                self.address = get_address(tx_hash)
+                with open(self.address_filename, "w") as text_file:
+                    text_file.write(self.address)
+                    print("register router adress {}".format(self.address))
 
         self.max_id = 0
         self.contracts = []
@@ -138,7 +150,8 @@ class Router(object):
         return True
 
     def send_signed_contract_to_chain(self, contract):
-        return True
+        client_private_key = ''
+        client_address = ''
 
     def create_contract(self, mac):
         return Contract(self, mac)
